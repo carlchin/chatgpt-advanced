@@ -16,8 +16,12 @@ let footer: HTMLDivElement
 
 async function onSubmit(event: MouseEvent | KeyboardEvent) {
 
-    if (event instanceof KeyboardEvent && event.shiftKey && event.key === 'Enter')
+    if (event.shiftKey && event.key === 'Enter')
         return
+
+    if (event.key === 'Enter' && event.isComposing) {
+        return
+    }
 
     if ((event.type === "click" || (event instanceof KeyboardEvent && event.key === 'Enter')) && !isProcessing) {
 
